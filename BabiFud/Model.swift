@@ -87,12 +87,28 @@ protocol ModelDelegate {
     return e
   }
   
-  func fetchEstablishments(location:CLLocation,
-                           radiusInMeters:CLLocationDistance) {
-    //replace this stub
-    dispatch_async(dispatch_get_main_queue()) {
-      self.delegate?.modelUpdated()
-      println("model updated")
+  func fetchEstablishments(location:CLLocation, radiusInMeters:CLLocationDistance) {
+    let radiusInKilometers = radiusInMeters / 1000.0
+    let locationPredicate = NSPredicate(format: "distanceToLocation:fromLocation:(%K,%@) < %f", "Location", location, radiusInKilometers)
+    let query = CKQuery(recordType: EstablishmentType, predicate: locationPredicate)
+    publicDB.performQuery(query, inZoneWithID: nil) {
+      results, error in
+      if error != nil {
+        dispatch_async(dispatch_get_main_queue()) {
+          self.delegate?.errorUpdating(error)
+          return
+        }
+      } else {
+        self.items.removeAll(keepCapacity: true)
+        for record in results {
+          let establishment = Establishment(record: record as CKRecord, database: self.publicDB)
+          self.items.append(establishment)
+        }
+        dispatch_async(dispatch_get_main_queue()) {
+          self.delegate?.modelUpdated()
+          return
+        }
+      }
     }
   }
   
