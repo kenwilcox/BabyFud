@@ -178,8 +178,17 @@ class Establishment : NSObject, MKAnnotation {
   }
 
   func loadCoverPhoto(completion:(photo: UIImage!) -> ()) {
-    //replace this stub
-    completion(photo: nil)
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)) {
+      var image: UIImage!
+      let coverPhoto = self.record.objectForKey("CoverPhoto") as CKAsset!
+      if let asset = coverPhoto {
+        if let url = asset.fileURL {
+          let imageData = NSData(contentsOfFile: url.path!)!
+          image = UIImage(data: imageData)
+        }
+      }
+      completion(photo: image)
+    }
   }
   
   //MARK: - map annotation
