@@ -116,9 +116,14 @@ class MasterViewController: UITableViewController, ModelDelegate, CLLocationMana
   //#pragma mark model delegate
   
   func modelUpdated() {
+    refreshControl?.endRefreshing()
+    tableView.reloadData()
   }
   
   func errorUpdating(error: NSError) {
+    let message = error.localizedDescription
+    let alert = UIAlertView(title: "Error Loading Establishments", message: message, delegate: nil, cancelButtonTitle: "OK")
+    alert.show()
   }
   
   //#pragma mark location stuff & delegate
