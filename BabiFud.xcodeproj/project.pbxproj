@@ -40,7 +40,6 @@
 		27DA779F196746E2005FFA76 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27DA779E196746E2005FFA76 /* SettingsViewController.swift */; };
 		27DA77A1196756D9005FFA76 /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27DA77A0196756D9005FFA76 /* UserInfo.swift */; };
 		BE4865281A96926F00C6C547 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = BE4865261A96926F00C6C547 /* LICENSE */; };
-		BE4865291A96926F00C6C547 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = BE4865271A96926F00C6C547 /* README.md */; };
 		BEA69F631A96907F00F074D5 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BEA69F621A96907F00F074D5 /* CloudKit.framework */; };
 /* End PBXBuildFile section */
 
@@ -382,7 +381,6 @@
 				2734B41319746D1D00EC9709 /* NotesTableViewController.swift in Sources */,
 				27DA778019672452005FFA76 /* DetailViewController.swift in Sources */,
 				2702BB3D197B5D75003BA38D /* MapViewController.swift in Sources */,
-				BE4865291A96926F00C6C547 /* README.md in Sources */,
 				27DA777E19672452005FFA76 /* MasterViewController.swift in Sources */,
 				27B38EB51977616600385025 /* EstablishmentCell.swift in Sources */,
 				27DA777C19672452005FFA76 /* AppDelegate.swift in Sources */,
