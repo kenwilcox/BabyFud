@@ -27,9 +27,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   
   var window: UIWindow?
   
-  
   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: NSDictionary?) -> Bool {
-
+    
     //  doWorkaround()
     
     let navBarController = self.window!.rootViewController as UITabBarController

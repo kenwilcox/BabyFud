@@ -26,36 +26,36 @@ import CloudKit
 import MapKit
 
 struct ChangingTableLocation : RawOptionSetType, BooleanType {
-    var rawValue: UInt = 0
-    var boolValue:Bool {
-        get {
-            return self.rawValue != 0
-        }
+  var rawValue: UInt = 0
+  var boolValue:Bool {
+    get {
+      return self.rawValue != 0
     }
-    init(rawValue: UInt) { self.rawValue = rawValue }
-    init(nilLiteral: ()) { self.rawValue = 0 }
-    func toRaw() -> UInt { return self.rawValue }
-    static func convertFromNilLiteral() -> ChangingTableLocation { return .None}
-    static func fromRaw(raw: UInt) -> ChangingTableLocation? { return self(rawValue: raw) }
-    static func fromMask(raw: UInt) -> ChangingTableLocation { return self(rawValue: raw) }
-    static var allZeros: ChangingTableLocation { return self(rawValue: 0) }
-    
-    static var None: ChangingTableLocation   { return self(rawValue: 0) }      //0
-    static var Mens: ChangingTableLocation   { return self(rawValue: 1 << 0) } //1
-    static var Womens: ChangingTableLocation { return self(rawValue: 1 << 1) } //2
-    static var Family: ChangingTableLocation { return self(rawValue: 1 << 2) } //4
-    
-    func images() -> [UIImage] {
-        var images = [UIImage]()
-        if self & .Mens {
-            images.append(UIImage(named: "man")!)
-        }
-        if self & .Womens {
-            images.append(UIImage(named: "woman")!)
-        }
-        
-        return images
+  }
+  init(rawValue: UInt) { self.rawValue = rawValue }
+  init(nilLiteral: ()) { self.rawValue = 0 }
+  func toRaw() -> UInt { return self.rawValue }
+  static func convertFromNilLiteral() -> ChangingTableLocation { return .None}
+  static func fromRaw(raw: UInt) -> ChangingTableLocation? { return self(rawValue: raw) }
+  static func fromMask(raw: UInt) -> ChangingTableLocation { return self(rawValue: raw) }
+  static var allZeros: ChangingTableLocation { return self(rawValue: 0) }
+  
+  static var None: ChangingTableLocation   { return self(rawValue: 0) }      //0
+  static var Mens: ChangingTableLocation   { return self(rawValue: 1 << 0) } //1
+  static var Womens: ChangingTableLocation { return self(rawValue: 1 << 1) } //2
+  static var Family: ChangingTableLocation { return self(rawValue: 1 << 2) } //4
+  
+  func images() -> [UIImage] {
+    var images = [UIImage]()
+    if self & .Mens {
+      images.append(UIImage(named: "man")!)
     }
+    if self & .Womens {
+      images.append(UIImage(named: "woman")!)
+    }
+    
+    return images
+  }
 }
 
 func == (lhs: ChangingTableLocation, rhs: ChangingTableLocation) -> Bool     { return lhs.rawValue == rhs.rawValue }
@@ -65,35 +65,35 @@ func ^ (lhs: ChangingTableLocation, rhs: ChangingTableLocation) -> ChangingTable
 
 
 struct SeatingType : RawOptionSetType, BooleanType {
-    var rawValue: UInt = 0
-    var boolValue:Bool {
-        get {
-            return self.rawValue != 0
-        }
+  var rawValue: UInt = 0
+  var boolValue:Bool {
+    get {
+      return self.rawValue != 0
     }
-    init(rawValue: UInt) { self.rawValue = rawValue }
-    init(nilLiteral: ()) { self.rawValue = 0 }
-    func toRaw() -> UInt { return self.rawValue }
-    static func convertFromNilLiteral() -> SeatingType { return .None}
-    static func fromRaw(raw: UInt) -> SeatingType? { return self(rawValue: raw) }
-    static func fromMask(raw: UInt) -> SeatingType { return self(rawValue: raw) }
-    static var allZeros: SeatingType { return self(rawValue: 0) }
-    
-    static var None:      SeatingType { return self(rawValue: 0) }      //0
-    static var Booster:   SeatingType { return self(rawValue: 1 << 0) } //1
-    static var HighChair: SeatingType { return self(rawValue: 1 << 1) } //2
-    
-    func images() -> [UIImage] {
-        var images = [UIImage]()
-        if self & .Booster {
-            images.append(UIImage(named: "booster")!)
-        }
-        if self & .HighChair {
-            images.append(UIImage(named: "highchair")!)
-        }
-        
-        return images
+  }
+  init(rawValue: UInt) { self.rawValue = rawValue }
+  init(nilLiteral: ()) { self.rawValue = 0 }
+  func toRaw() -> UInt { return self.rawValue }
+  static func convertFromNilLiteral() -> SeatingType { return .None}
+  static func fromRaw(raw: UInt) -> SeatingType? { return self(rawValue: raw) }
+  static func fromMask(raw: UInt) -> SeatingType { return self(rawValue: raw) }
+  static var allZeros: SeatingType { return self(rawValue: 0) }
+  
+  static var None:      SeatingType { return self(rawValue: 0) }      //0
+  static var Booster:   SeatingType { return self(rawValue: 1 << 0) } //1
+  static var HighChair: SeatingType { return self(rawValue: 1 << 1) } //2
+  
+  func images() -> [UIImage] {
+    var images = [UIImage]()
+    if self & .Booster {
+      images.append(UIImage(named: "booster")!)
     }
+    if self & .HighChair {
+      images.append(UIImage(named: "highchair")!)
+    }
+    
+    return images
+  }
 }
 
 func == (lhs: SeatingType, rhs: SeatingType) -> Bool     { return lhs.rawValue == rhs.rawValue }
@@ -111,15 +111,15 @@ class Establishment : NSObject, MKAnnotation {
   var assetCount = 0
   
   var healthyChoice : Bool {
-  get {
-    return record.objectForKey("HealthyOption").boolValue
-  }
+    get {
+      return record.objectForKey("HealthyOption").boolValue
+    }
   }
   
   var kidsMenu: Bool {
-  get {
-    return record.objectForKey("KidsMenu").boolValue
-  }
+    get {
+      return record.objectForKey("KidsMenu").boolValue
+    }
   }
   
   init(record : CKRecord, database: CKDatabase) {
@@ -140,7 +140,7 @@ class Establishment : NSObject, MKAnnotation {
     //REPLACE THIS STUB
     completion(rating: 0, isUser: false)
   }
-
+  
   func fetchNote(completion: (note: String!) -> ()) {
     Model.sharedInstance().fetchNote(self) { note, error in
       completion(note: note)
@@ -176,7 +176,7 @@ class Establishment : NSObject, MKAnnotation {
     }
     return SeatingType(rawValue: val)
   }
-
+  
   func loadCoverPhoto(completion:(photo: UIImage!) -> ()) {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)) {
       var image: UIImage!
@@ -194,15 +194,15 @@ class Establishment : NSObject, MKAnnotation {
   //MARK: - map annotation
   
   var coordinate : CLLocationCoordinate2D {
-  get {
-    return location.coordinate
-  }
+    get {
+      return location.coordinate
+    }
   }
   var title : String! {
-  get {
-    return name
-  }
+    get {
+      return name
+    }
   }
   
-
+  
 }

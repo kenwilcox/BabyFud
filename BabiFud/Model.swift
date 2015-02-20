@@ -37,7 +37,7 @@ protocol ModelDelegate {
   class func sharedInstance() -> Model {
     return modelSingletonGlobal
   }
-
+  
   var delegate : ModelDelegate?
   
   var items = [Establishment]()
@@ -113,12 +113,12 @@ protocol ModelDelegate {
   }
   
   func fetchEstablishments(location:      CLLocation,
-                           radiusInMeters:CLLocationDistance,
-                           completion:    (results:[Establishment]!, error:NSError!) -> ()) {
-                            let radiusInKilometers = radiusInMeters / 1000.0 //1
-                            //Apple Campus location = 37.33182, -122.03118
-                            var location = CLLocation(latitude: 37.33182, longitude: -122.03118)
-
+    radiusInMeters:CLLocationDistance,
+    completion:    (results:[Establishment]!, error:NSError!) -> ()) {
+      let radiusInKilometers = radiusInMeters / 1000.0 //1
+      //Apple Campus location = 37.33182, -122.03118
+      var location = CLLocation(latitude: 37.33182, longitude: -122.03118)
+      
       let locationPredicate = NSPredicate(format: "distanceToLocation:fromLocation:(%K,%@) < %f",
         "Location",
         location,
@@ -140,7 +140,7 @@ protocol ModelDelegate {
         }
       }
   }
-
+  
   // #pragma mark - Notes
   
   func fetchNotes( completion : (notes : NSArray!, error : NSError!) -> () ) {
@@ -149,19 +149,19 @@ protocol ModelDelegate {
       completion(notes: results, error: error)
     }
   }
-    
+  
   func fetchNote(establishment: Establishment,
-                 completion:(note: String!, error: NSError!) ->()) {
-                  //replace this stub
-    completion(note: nil, error: nil)
+    completion:(note: String!, error: NSError!) ->()) {
+      //replace this stub
+      completion(note: nil, error: nil)
   }
   
   func addNote(note: String,
-               establishment: Establishment!,
-               completion: (error : NSError!)->()) {
-
-                //replace this stub
-    completion(error: nil)
+    establishment: Establishment!,
+    completion: (error : NSError!)->()) {
+      
+      //replace this stub
+      completion(error: nil)
   }
 }
 
